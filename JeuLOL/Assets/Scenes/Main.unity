@@ -282,7 +282,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2091847133}
-        m_MethodName: doExitGame
+        m_MethodName: DoExitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1321,7 +1321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadingScreen: {fileID: 1867452622}
   slider: {fileID: 837099170}
-  progressText: {fileID: 0}
+  progressText: {fileID: 2084030716}
 --- !u!4 &2091847134
 Transform:
   m_ObjectHideFlags: 0
