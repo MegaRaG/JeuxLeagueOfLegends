@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class QuizLoL : MonoBehaviour
+public class Quiz : MonoBehaviour
 {
-    public Button buttonStart;
+	public Button buttonStart;
 	public InputField inputName;
 	private string input;
 	public void Start()
@@ -20,8 +20,8 @@ public class QuizLoL : MonoBehaviour
 	}
 
 	public void ReadStringInput(string s)
-    {
+	{
 		input = s;
 		Debug.Log("Input = " + input);
-    }
+	}
 }

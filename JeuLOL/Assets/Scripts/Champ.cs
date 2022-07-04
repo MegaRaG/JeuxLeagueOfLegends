@@ -4,12 +4,12 @@ using System;
 using System.Text;
 using UnityEngine;
 
-public class Champion : MonoBehaviour
+public class Champ : MonoBehaviour
 {
     private String nom;
     private string imagePath;
     private string description;
-    public Champion(string nom, string imagePath, string description)
+    public Champ(string nom, string imagePath, string description)
     {
         this.Nom = nom;
         this.ImagePath = imagePath;
@@ -42,7 +42,7 @@ public class Champion : MonoBehaviour
 
     public override bool Equals(object obj)
     {
-        return obj is Champion chapions &&
+        return obj is Champ chapions &&
                this.nom == chapions.nom;
     }
 
