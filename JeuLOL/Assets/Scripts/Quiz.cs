@@ -1,5 +1,8 @@
-﻿using System.Collections;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,5 +26,16 @@ public class Quiz : MonoBehaviour
 	{
 		input = s;
 		Debug.Log("Input = " + input);
+	}
+	public static List<Champ> ChargeChampions()
+	{
+		List<Champ> lesStocks = null;
+		try
+		{
+			string contenuFichier = File.ReadAllText("LoLJSON.json");
+			lesStocks = JsonConvert.DeserializeObject<List<Champ>>(contenuFichier);
+		}
+		catch (Exception e) { throw e; }
+		return lesStocks;
 	}
 }
