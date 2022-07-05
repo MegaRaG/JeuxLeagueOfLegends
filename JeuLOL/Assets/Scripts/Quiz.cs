@@ -21,11 +21,14 @@ public class Quiz : MonoBehaviour
 	public Text textFinal;
 	public Text textReponses;
 	public Text textPoints;
-	public Image image;
+	public string BaseUrl;
+	//public GameObject loading;
+	public RawImage Image;
 	private string input;
 	public void Start()
 	{
 		lesChampions = ChargeChampions();
+		Display();
 
 		Button btn = buttonStart.GetComponent<Button>();
 		btn.onClick.AddListener(EnterOnClick);
@@ -35,7 +38,9 @@ public class Quiz : MonoBehaviour
 
 	public void EnterOnClick()
 	{
-		//LoadTextureFromURL.ChangeImageStatic(championRandom.ImagePath);
+		textFinal.text = championRandom.Nom;
+		BaseUrl = championRandom.ImagePath;
+		StartCoroutine(LoadImage(BaseUrl));
 		nbEssai = 3;
 		Debug.Log("You have clicked the button Start!");
 
@@ -94,5 +99,21 @@ public class Quiz : MonoBehaviour
 			numChamp++;
 		} while (passé.Contains(championRandom) && passé.Count != lesChampions.Count);
 
+	}
+	IEnumerator LoadImage(string imageURL)
+	{
+		WWW www = new WWW(imageURL);
+		//loading.SetActive(true);
+		yield return www;
+		if (www.error == null)
+		{
+			//loading.SetActive(false);
+			Texture2D texture = www.texture;
+			Image.texture = texture;
+		}
+		else
+		{
+			Debug.Log("Ya une erreur URL");
+		}
 	}
 }

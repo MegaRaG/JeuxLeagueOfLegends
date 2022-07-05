@@ -15,7 +15,6 @@ public class Champ : MonoBehaviour
         this.ImagePath = imagePath;
         this.Description = description;
     }
-
     public string Nom
     {
         get
