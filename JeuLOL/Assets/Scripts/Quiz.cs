@@ -21,11 +21,17 @@ public class Quiz : MonoBehaviour
 	public Text textFinal;
 	public Text textReponses;
 	public Text textPoints;
+	public Text textSlider;
 	public string BaseUrl;
+	public RawImage Image;
 
 	//public GameObject loading;
-	public RawImage Image;
+	private float targetProgress = 0;
+	public float FillSpeed = 0.5f;
+	private ParticleSystem particuleSys;
+	private Slider slider;
 	private string input;
+	private float valBail;
 	public void Start()
 	{
 		Button btn = buttonStart.GetComponent<Button>();
@@ -33,29 +39,51 @@ public class Quiz : MonoBehaviour
 		Button btnn = buttonVerif.GetComponent<Button>();
 		btnn.onClick.AddListener(VerifOnClick);
 	}
-	private void Update()
+
+	public void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.B))
 		{
 			textFinal.text = championRandom.Nom;
 		}
+		if(slider.value < targetProgress)
+        {
+			slider.value += FillSpeed*Time.deltaTime;
+			if (!particuleSys.isPlaying)
+				particuleSys.Play();
+        }
+        else {
+			particuleSys.Stop(); 
+		}
+
 	}
-		public void EnterOnClick()
+	public void EnterOnClick()
 	{
 		textFinal.text = "";
 		textReponses.text = "";
 		Debug.Log("You have clicked the button Start!");
 		lesChampions = ChargeChampions();
 		Display();
+		textSlider.text = $"{numChamp} / 160";
 
 		BaseUrl = championRandom.ImagePath;
 		StartCoroutine(LoadImage(BaseUrl));
 
 		nbEssai = 3;
+
+		valBail = numChamp / 160;
+		valBail = convert(valBail);
 		
+		IncrementProgress(valBail);
 		inputName.text = $"{lesChampions[Generateur.Next(lesChampions.Count)].Nom.ToLower()} ?";
 	}
-
+	public float convert(float f)
+    {
+		string bai = f.ToString();
+		bai = bai + "f";
+		f = float.Parse(bai);
+		return f;
+    }
 	public void VerifOnClick()
 	{
 		if (nbEssai < 0)
@@ -107,9 +135,8 @@ public class Quiz : MonoBehaviour
 		do
 		{
 			championRandom = lesChampions[Generateur.Next(lesChampions.Count)];
-			numChamp++;
+			numChamp+=1;
 		} while (passé.Contains(championRandom) && passé.Count != lesChampions.Count);
-
 	}
 	IEnumerator LoadImage(string imageURL)
 	{
@@ -127,4 +154,13 @@ public class Quiz : MonoBehaviour
 			Debug.Log("Ya une erreur URL");
 		}
 	}
+	private void Awake()
+    {
+	slider = gameObject.GetComponent<Slider>();
+		particuleSys = GameObject.Find("Progress Bar Particules").GetComponent<ParticleSystem>();
+    }
+	private void IncrementProgress(float newProgress)
+    {
+		targetProgress = slider.value + newProgress;
+    }
 }
