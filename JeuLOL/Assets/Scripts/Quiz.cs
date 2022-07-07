@@ -13,7 +13,7 @@ public class Quiz : MonoBehaviour
 	Champ championRandom;
     System.Random Generateur = new System.Random();
 	List<Champ> passé = new List<Champ>();
-	int nbPoints = 0, numChamp = 0, nbEssai = 3;
+	int nbPoints = 0, numChamp = 0, nbEssai = 0;
 
 	public Button buttonStart;
 	public Button buttonVerif;
@@ -22,56 +22,67 @@ public class Quiz : MonoBehaviour
 	public Text textReponses;
 	public Text textPoints;
 	public string BaseUrl;
+
 	//public GameObject loading;
 	public RawImage Image;
 	private string input;
 	public void Start()
 	{
-		lesChampions = ChargeChampions();
-		Display();
-
 		Button btn = buttonStart.GetComponent<Button>();
 		btn.onClick.AddListener(EnterOnClick);
 		Button btnn = buttonVerif.GetComponent<Button>();
 		btnn.onClick.AddListener(VerifOnClick);
 	}
-
-	public void EnterOnClick()
+	private void Update()
 	{
-		textFinal.text = championRandom.Nom;
+		if (Input.GetKeyDown(KeyCode.B))
+		{
+			textFinal.text = championRandom.Nom;
+		}
+	}
+		public void EnterOnClick()
+	{
+		textFinal.text = "";
+		textReponses.text = "";
+		Debug.Log("You have clicked the button Start!");
+		lesChampions = ChargeChampions();
+		Display();
+
 		BaseUrl = championRandom.ImagePath;
 		StartCoroutine(LoadImage(BaseUrl));
+
 		nbEssai = 3;
-		Debug.Log("You have clicked the button Start!");
-
-		Display();
+		
 		inputName.text = $"{lesChampions[Generateur.Next(lesChampions.Count)].Nom.ToLower()} ?";
-
 	}
 
 	public void VerifOnClick()
 	{
-		if(nbEssai == 0)
+		if (nbEssai < 0)
         {
-			textReponses.text = $"Nuuuul, c'était {championRandom.Nom}";
+			textFinal.text = "Vous ne pouvez plus Verif";
 		}
-
 		if (championRandom.Nom.ToUpper() == inputName.text.ToUpper())
 		{
 			textReponses.text = $"Bien joué, c'est bien {championRandom.Nom} !";
-			nbPoints += 2;
+			nbPoints = nbPoints + 1;
+			passé.Add(championRandom);
 		}
-		else
-        {
-			nbEssai--;
+		else if (nbEssai == 2 || nbEssai == 1)
+		{
+			nbEssai = nbEssai-1;
 			textReponses.text  = $"Aïe, c'est pas {inputName.text.ToUpper()} \nplus que {nbEssai} essais !";
 		}
-
-		passé.Add(championRandom);
+		else if (nbEssai == 0)
+		{
+			textReponses.text = $"Nuuuul, c'était {championRandom.Nom}";
+			passé.Add(championRandom);
+		}
+		textPoints.text = $"Points : {nbPoints}";
 	}
 	public void ReadStringInput(string s)
 	{
-		input = s;
+		input = s.ToUpper();
 		Debug.Log("Input = " + input);
 	}
 
