@@ -13,7 +13,7 @@ public class Quiz : MonoBehaviour
 	Champ championRandom;
     System.Random Generateur = new System.Random();
 	List<Champ> passé = new List<Champ>();
-	int nbPoints = 0, numChamp = 0, nbEssai = 0;
+	public int nbPoints = 0, numChamp = 0, nbEssai = 0;
 
 	public Button buttonStart;
 	public Button buttonVerif;
@@ -26,14 +26,13 @@ public class Quiz : MonoBehaviour
 	public RawImage Image;
 
 	//public GameObject loading;
-	private float targetProgress = 0;
-	public float FillSpeed = 0.5f;
-	private ParticleSystem particuleSys;
-	private Slider slider;
 	private string input;
-	private float valBail;
+	
 	public void Start()
 	{
+		var type = Type.GetType("Champ");
+		gameObject.AddComponent(type);
+
 		Button btn = buttonStart.GetComponent<Button>();
 		btn.onClick.AddListener(EnterOnClick);
 		Button btnn = buttonVerif.GetComponent<Button>();
@@ -46,19 +45,10 @@ public class Quiz : MonoBehaviour
 		{
 			textFinal.text = championRandom.Nom;
 		}
-		if(slider.value < targetProgress)
-        {
-			slider.value += FillSpeed*Time.deltaTime;
-			if (!particuleSys.isPlaying)
-				particuleSys.Play();
-        }
-        else {
-			particuleSys.Stop(); 
-		}
-
 	}
 	public void EnterOnClick()
 	{
+		nbEssai = 3;
 		textFinal.text = "";
 		textReponses.text = "";
 		Debug.Log("You have clicked the button Start!");
@@ -68,29 +58,16 @@ public class Quiz : MonoBehaviour
 
 		BaseUrl = championRandom.ImagePath;
 		StartCoroutine(LoadImage(BaseUrl));
-
-		nbEssai = 3;
-
-		valBail = numChamp / 160;
-		valBail = convert(valBail);
 		
-		IncrementProgress(valBail);
 		inputName.text = $"{lesChampions[Generateur.Next(lesChampions.Count)].Nom.ToLower()} ?";
 	}
-	public float convert(float f)
-    {
-		string bai = f.ToString();
-		bai = bai + "f";
-		f = float.Parse(bai);
-		return f;
-    }
 	public void VerifOnClick()
 	{
 		if (nbEssai < 0)
         {
 			textFinal.text = "Vous ne pouvez plus Verif";
 		}
-		if (championRandom.Nom.ToUpper() == inputName.text.ToUpper())
+		else if (championRandom.Nom.ToUpper() == inputName.text.ToUpper())
 		{
 			textReponses.text = $"Bien joué, c'est bien {championRandom.Nom} !";
 			nbPoints = nbPoints + 1;
@@ -154,13 +131,4 @@ public class Quiz : MonoBehaviour
 			Debug.Log("Ya une erreur URL");
 		}
 	}
-	private void Awake()
-    {
-	slider = gameObject.GetComponent<Slider>();
-		particuleSys = GameObject.Find("Progress Bar Particules").GetComponent<ParticleSystem>();
-    }
-	private void IncrementProgress(float newProgress)
-    {
-		targetProgress = slider.value + newProgress;
-    }
 }

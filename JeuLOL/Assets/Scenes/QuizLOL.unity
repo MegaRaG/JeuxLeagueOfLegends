@@ -449,7 +449,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.18699113, g: 0.9622642, b: 0.013616921, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -488,18 +488,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 401671290}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bb94b2dd21f81f4c99031555a425175, type: 3}
+  m_Script: {fileID: 11500000, guid: a963f412ac0b6ae468af37ebd400582e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonStart: {fileID: 0}
-  buttonVerif: {fileID: 0}
-  inputName: {fileID: 0}
-  textFinal: {fileID: 0}
-  textReponses: {fileID: 0}
-  textPoints: {fileID: 0}
-  textSlider: {fileID: 0}
-  BaseUrl: 
-  Image: {fileID: 0}
   FillSpeed: 0.5
 --- !u!1 &421735304
 GameObject:
@@ -2509,6 +2500,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bb94b2dd21f81f4c99031555a425175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nbPoints: 0
+  numChamp: 0
+  nbEssai: 0
   buttonStart: {fileID: 1668113954}
   buttonVerif: {fileID: 1144962075}
   inputName: {fileID: 1605443130}
@@ -2518,7 +2512,6 @@ MonoBehaviour:
   textSlider: {fileID: 593382100}
   BaseUrl: 
   Image: {fileID: 194593720}
-  FillSpeed: 0.5
 --- !u!4 &1764937745
 Transform:
   m_ObjectHideFlags: 0
