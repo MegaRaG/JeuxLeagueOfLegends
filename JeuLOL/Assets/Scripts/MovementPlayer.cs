@@ -59,7 +59,7 @@ public class MovementPlayer : MonoBehaviour
         Jump();
         JumpBuff();
 
-        MovePlayer(horizontalMovement, verticalMovement);
+        MovePlayer(horizontalMovement, verticalMovement); 
 
     }
     
