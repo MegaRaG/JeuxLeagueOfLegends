@@ -9,7 +9,7 @@ public class MovementPlayer : MonoBehaviour
     public float jumpForce;
 
     private bool isJumping;
-    private bool isGrounded;
+    private bool isGrounded = true;
     [HideInInspector]
     public bool isClimbing;
 
@@ -23,23 +23,45 @@ public class MovementPlayer : MonoBehaviour
     private float horizontalMovement;
     private float verticalMovement;
 
-   
+    private bool endedJumpEarly = true;
+    private float currentHorizontalSpeed;
+    private float currentVerticalSpeed;
+    private float _fallSpeed;
+    private float lastJumpPressed;
+    private bool colDown;
+
+    [SerializeField] private float jumpEndEarlyGravityModifier = 3;
+    [SerializeField] private float jumpBuffer = 0.1f;
+    [Header("GRAVITY")] [SerializeField] private float fallClamp = -40f;
+
+
+
+
+
 
     void Update()
     {
         horizontalMovement = Input.GetAxis("Horizontal") * speed * Time.fixedDeltaTime;
         verticalMovement = Input.GetAxis("Vertical") * climb * Time.fixedDeltaTime;
+        
 
         if (Input.GetButtonDown("Jump") && isGrounded && !isClimbing)
+        //if (Input.GetButtonDown("Jump"))
         {
             isJumping = true;
+           // isGrounded = false;
         }
+      
+        
+
+        Jump();
+        JumpBuff();
 
     }
 
-   void FixedUpdate()
+    void FixedUpdate()
     {
-        
+
         MovePlayer(horizontalMovement, verticalMovement);
     }
 
@@ -64,6 +86,28 @@ public class MovementPlayer : MonoBehaviour
 
     }
 
-    
+    private void Jump()
+    {
+        var fallSpeed = endedJumpEarly && currentVerticalSpeed > 0 ? _fallSpeed * jumpEndEarlyGravityModifier : _fallSpeed;
+
+        currentVerticalSpeed -= fallSpeed * Time.deltaTime;
+
+        if (currentVerticalSpeed < fallClamp) currentVerticalSpeed = fallClamp;
+    }
+
+    private void JumpBuff()
+    {
+        if (colDown && lastJumpPressed + jumpBuffer > Time.time)
+        {
+
+        }
+    }
+
+
+
+
+
+
+
 
 }
