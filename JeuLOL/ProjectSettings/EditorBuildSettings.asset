@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Jerem.unity
     guid: 3c8d92f7794115e4b86f414e6d58c152
+  - enabled: 1
+    path: Assets/Scenes/QuizLevelEasy.unity
+    guid: 11ca39a0ec876014cb6ddeee0322b195
   m_configObjects: {}
