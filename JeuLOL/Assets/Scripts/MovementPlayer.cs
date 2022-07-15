@@ -8,12 +8,14 @@ public class MovementPlayer : MonoBehaviour
     public float climb;
     public float jumpForce;
 
-    private bool isJumping;
-    private bool isGrounded = true;
+    [SerializeField] private bool isJumping;
+    [SerializeField] private bool isGrounded;
     [HideInInspector]
     public bool isClimbing;
 
-    public Transform groundCheck;
+    
+    public Transform groundCheckLeft;
+    public Transform groundCheckRight;
 
     public Rigidbody2D rigidBody;
 
@@ -29,9 +31,11 @@ public class MovementPlayer : MonoBehaviour
     private float _fallSpeed;
     private float lastJumpPressed;
     private bool colDown;
+     
 
     [SerializeField] private float jumpEndEarlyGravityModifier = 3;
     [SerializeField] private float jumpBuffer = 0.1f;
+    [SerializeField] private int aa = 1;
     [Header("GRAVITY")] [SerializeField] private float fallClamp = -40f;
 
 
@@ -43,26 +47,27 @@ public class MovementPlayer : MonoBehaviour
     {
         horizontalMovement = Input.GetAxis("Horizontal") * speed * Time.fixedDeltaTime;
         verticalMovement = Input.GetAxis("Vertical") * climb * Time.fixedDeltaTime;
-        
+        isGrounded = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position);
 
-        if (Input.GetButtonDown("Jump") && isGrounded && !isClimbing)
-        //if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && isGrounded)
+
         {
             isJumping = true;
-           // isGrounded = false;
+            isGrounded = false;
         }
-      
-        
 
         Jump();
         JumpBuff();
 
+        MovePlayer(horizontalMovement, verticalMovement);
+
     }
+    
 
     void FixedUpdate()
     {
 
-        MovePlayer(horizontalMovement, verticalMovement);
+       
     }
 
     void MovePlayer(float _horizontalMovement, float _verticalMovement)
@@ -72,16 +77,19 @@ public class MovementPlayer : MonoBehaviour
             Vector3 targetVelocity = new Vector2(_horizontalMovement, rigidBody.velocity.y);
             rigidBody.velocity = Vector3.SmoothDamp(rigidBody.velocity, targetVelocity, ref velocity, .05f);
 
-            if (isJumping)
+            if (isJumping == true)
             {
                 rigidBody.AddForce(new Vector2(0f, jumpForce));
                 isJumping = false;
+                
+                
             }
         }
         else
         {
             Vector3 targetVelocity = new Vector2(0, _verticalMovement);
             rigidBody.velocity = Vector3.SmoothDamp(rigidBody.velocity, targetVelocity, ref velocity, .05f);
+            
         }
 
     }
