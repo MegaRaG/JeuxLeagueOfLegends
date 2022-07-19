@@ -115,7 +115,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 11521
+  controlID: 5220
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -140,7 +140,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 11526
+  controlID: 5225
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 11527
+  controlID: 5226
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -202,7 +202,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: GameView
+  m_Name: SceneView
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -211,15 +211,15 @@ MonoBehaviour:
     y: 0
     width: 883
     height: 457
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_ActualView: {fileID: 12}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
+  m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 14}
   - {fileID: 12}
   - {fileID: 15}
-  m_Selected: 1
-  m_LastSelected: 2
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -312,7 +312,7 @@ MonoBehaviour:
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
-  m_MaximizeOnPlay: 0
+  m_MaximizeOnPlay: 1
   m_UseMipMap: 0
   m_VSyncEnabled: 0
   m_Gizmos: 0
@@ -346,7 +346,7 @@ MonoBehaviour:
       y: 21
       width: 881
       height: 415
-    m_Scale: {x: 1.2276609, y: 1.2276609}
+    m_Scale: {x: 1, y: 1}
     m_Translation: {x: 440.5, y: 207.5}
     m_MarginLeft: 0
     m_MarginRight: 0
@@ -354,10 +354,10 @@ MonoBehaviour:
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -358.81244
-      y: -169.02061
-      width: 717.6249
-      height: 338.04123
+      x: -440.5
+      y: -207.5
+      width: 881
+      height: 415
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 1101.25, y: 545}
@@ -395,9 +395,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 80d2ffff8ad2ffff94d2ffffd6d3ffff44f2ffff60f2ffff6ef2ffff7cf2ffffb8faffff5efbffff003b000054410000b64d0000c24d0000
+      m_SelectedIDs: 4a450000
+      m_LastClickedID: 17738
+      m_ExpandedIDs: 38f8ffff46f8ffff50f8ffff04f9ffff10f9ffffa2faffffacfaffffb6faffffc2faffffccfaffffd6faffff5efbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -457,9 +457,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 505.3209, y: 216.86107, z: -230.875}
+    m_Target: {x: 2.0350206, y: -0.5546521, z: -0.08105469}
     speed: 2
-    m_Value: {x: 505.3209, y: 216.86107, z: -230.875}
+    m_Value: {x: 2.0350206, y: -0.5546521, z: -0.08105469}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -509,9 +509,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 259.0527
+    m_Target: 2.7885544
     speed: 2
-    m_Value: 259.0527
+    m_Value: 2.7885544
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -566,14 +566,14 @@ MonoBehaviour:
     m_KeySerializationHelper:
     - {fileID: -8343929589353237117, guid: f8c97897d6de8b547a6ec2b9d6be852f, type: 2}
     m_ValueSerializationHelper:
-    - e00: 0.9585881
+    - e00: 1
       e01: 0
       e02: 0
-      e03: -36.89557
+      e03: 0
       e10: 0
-      e11: 0.9585881
+      e11: 1
       e12: 0
-      e13: 27.10492
+      e13: 0
       e20: 0
       e21: 0
       e22: 1
@@ -639,20 +639,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Environment/Sprites
   m_ViewMode: 1
   m_StartGridSize: 32
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Environment/Sprites
   m_LastFoldersGridSize: 32
   m_LastProjectPath: C:\Users\Ahmed\Documents\GitHub\JeuxLeagueOfLegends\JeuLOL
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 283a0000
-    m_LastClickedID: 14888
-    m_ExpandedIDs: 00000000fe390000003a0000063a000000ca9a3b
+    m_SelectedIDs: c0390000
+    m_LastClickedID: 14784
+    m_ExpandedIDs: 00000000ae390000b039000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -680,7 +680,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000fe390000003a000000ca9a3b
+    m_ExpandedIDs: 00000000ae390000b039000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -707,8 +707,8 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c62300007839000034510000ae3a00004a3c0000223b0000
+    m_HadKeyboardFocusLastEvent: 0
+    m_ExpandedInstanceIDs: c62300007839000034510000ae3a00004a3c0000223b000082470000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -790,7 +790,7 @@ MonoBehaviour:
   m_ViewDataDictionary: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 16734
+  m_LastSelectedObjectID: -1998
 --- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52
